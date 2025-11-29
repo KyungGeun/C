@@ -1,0 +1,140 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+	int row = 0, col = 0, Rrow = 0, Rcol = 0;
+	char user = ' ';
+
+	char input11 = ' ', input12 = ' ', input13 = ' ';
+	char input21 = ' ', input22 = ' ', input23 = ' ';
+	char input31 = ' ', input32 = ' ', input33 = ' ';
+	
+	printf(" %c | %c | %c\n", input11, input12, input13);
+	printf("---|---|---\n");
+	printf(" %c | %c | %c\n", input21, input22, input23);
+	printf("---|---|---\n");
+	printf(" %c | %c | %c\n", input31, input32, input33);
+
+    for (int i = 0; i < 9; i++)
+    {
+        if (i % 2 == 0) {
+            user = 'X';
+        }
+        else {
+            user = 'O';
+        }
+
+        while (1) {
+            printf("\nPlayer %c, enter your move (row col): ", user);
+            scanf("%d %d", &row, &col);
+
+            if (row == 1 && col == 1 && input11 == ' ') {
+                input11 = user;
+                break;
+            }
+            else if (row == 1 && col == 2 && input12 == ' ') {
+                input12 = user;
+                break;
+            }
+            else if (row == 1 && col == 3 && input13 == ' ') {
+                input13 = user;
+                break;
+            }
+            else if (row == 2 && col == 1 && input21 == ' ') {
+                input21 = user;
+                break;
+            }
+            else if (row == 2 && col == 2 && input22 == ' ') {
+                input22 = user;
+                break;
+            }
+            else if (row == 2 && col == 3 && input23 == ' ') {
+                input23 = user;
+                break;
+            }
+            else if (row == 3 && col == 1 && input31 == ' ') {
+                input31 = user;
+                break;
+            }
+            else if (row == 3 && col == 2 && input32 == ' ') {
+                input32 = user;
+                break;
+            }
+            else if (row == 3 && col == 3 && input33 == ' ') {
+                input33 = user;
+                break;
+            }
+            else {
+                printf("Invalid move. Try again.\n");
+                printf("\n %c | %c | %c\n", input11, input12, input13);
+                printf("---|---|---\n");
+                printf(" %c | %c | %c\n", input21, input22, input23);
+                printf("---|---|---\n");
+                printf(" %c | %c | %c\n", input31, input32, input33);
+            }
+        }
+
+        printf("\n %c | %c | %c\n", input11, input12, input13);
+        printf("---|---|---\n");
+        printf(" %c | %c | %c\n", input21, input22, input23);
+        printf("---|---|---\n");
+        printf(" %c | %c | %c\n", input31, input32, input33);
+
+        if (input11 == input12 && input12 == input13 && input11 != ' ')
+        {
+            printf("Player %c, You Win!\n", user);
+            break;
+        }
+
+        else if (input12 == input22 && input22 == input32 && input12 != ' ')
+        {
+            printf("\nPlayer %c, You Win!\n", user);
+            break;
+        }
+
+        else if (input13 == input23 && input23 == input33 && input13 != ' ') // 가로
+        {
+            printf("\nPlayer %c, You Win!\n", user);
+            break;
+        }
+
+        else if (input11 == input12 && input12 == input13 && input11 != ' ')
+        {
+            printf("\nPlayer %c, You Win!\n", user);
+            break;
+        }
+
+        else if (input21 == input22 && input22 == input23 && input21 != ' ')
+        {
+            printf("\nPlayer %c, You Win!\n", user);
+            break;
+        }
+
+        else if (input31 == input32 && input32 == input33 && input31 != ' ') // 세로
+        {
+            printf("\nPlayer %c, You Win!\n", user);
+            break;
+        }
+
+        else if (input11 == input22 && input22 == input33 && input11 != ' ')
+        {
+            printf("\nPlayer %c, You Win!\n", user);
+            break;
+        }
+
+        else if (input31 == input22 && input22 == input13 && input31 != ' ') // 대각선
+        {
+            printf("\nPlayer %c, You Win!\n", user);
+            break;
+        }
+
+        else if (i == 8)
+        {
+            printf("\nIt's a draw!\n");
+            break;
+        }
+    }
+
+	return 0;
+}
