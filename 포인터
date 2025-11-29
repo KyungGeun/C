@@ -1,0 +1,91 @@
+#include <stdio.h>
+
+void swap(int a, int b);
+void swap_ptr(int* a, int* b);
+int main(void)
+{
+	/*
+		// 포인터: 변수의 메모리 주소 값을 가지며, 값을 변경할 수 있다. 또, 이들 또한 변수이기 때문에 메모리 주소가 있다.
+		printf("포인트\n");
+		int a = 1;
+
+		printf("a의 메모리 주소 : %d, 값 : %d\n", &a, a);
+	
+		int* p;
+		p = &a;
+		printf("p의 메모리 주소 : %d, 값 : %d\n", p, *p);
+
+		// 포인트가 가리는 메모리 주소의 값은 그 주소의 변수에 영향을 주나?
+		// = *p값을 수정하는 행위가 a의 값에 영향을 주나?
+
+		*p *= 10;
+		printf("%d %d\n", a, *p);
+
+		// 포인트 변수또한 변수이기에 메모리 주소가 있다.
+		printf("%d\n", &p);
+
+		// 포인트와 배열
+		printf("\n포인트와 배열\n");
+		int arr[3] = { 5, 15, 25 };
+		int* ptr = arr;
+
+		for (int i = 0; i < 3; i++)
+		{
+			printf("arr[%d] : %d, ", i, arr[i]);
+			printf("ptr[%d] : %d\n", i, ptr[i]);
+		}
+
+		// 배열도 마찬가지로 *ptr[i]값을 변경하면 arr[i]값에 영향을 준다.
+		for (int i = 0; i < 3; i++)
+		{
+			ptr[i] = (i + 1) * 100;
+			printf("arr[%d] : %d, ", i, arr[i]);
+			printf("ptr[%d] : %d\n", i, ptr[i]);
+		}
+
+		// arr[i]과 *(arr + i)의 의미는 같다.
+		for (int i = 0; i < 3; i++)
+		{
+			printf("arr[%d] : %d, ", i, *(arr + i));
+			printf("ptr[%d] : %d\n", i, *(ptr + i));
+		}
+	
+		printf("\n");
+
+		// 밑의 출력 함수를 통해 둘의 메모리 주소가 같다는 것을 알 수 있었다.
+		printf("arr의 주소 : %d\n", arr);
+		printf("arr[0]의 주소 : %d\n", &arr[0]);
+
+		// 그렇다면 그 메모리 주소의 값은 무엇일까
+		printf("arr의 주소 : %d\n", *arr);
+		printf("arr의 주소 : %d\n", *&arr[0]);
+
+		// *&는 상쇄된다.
+		printf("arr의 주소 : %d\n", *&*&*&*&*&arr[0]);
+		printf("arr의 주소 : %d\n", arr[0]);
+	*/
+
+	// 포인트와 함수
+	int a = 10, b = 20;
+	printf("%d %d\n", a, b);
+	swap(a, b);
+	printf("%d %d\n", a, b);
+	swap_ptr(&a, &b);
+	printf("%d %d\n", a, b);
+
+	return 0;
+}
+
+void swap(int a, int b)
+{
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+void swap_ptr(int* a, int* b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
