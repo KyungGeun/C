@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+struct Human {
+	char* name;
+	int age;
+	char* gender;
+};
+
+
+int main(void)
+{
+	struct Human okg;
+	okg.name = "오경근";
+	okg.age = 19;
+	okg.gender = "남자";
+
+	printf("이름 : %s\n", okg.name);
+	printf("나이 : %d\n", okg.age);
+	printf("성별 : %s\n", okg.gender);
+
+	printf("\n");
+
+	struct Human kya = { "박경아", 21, "여자" };
+	printf("이름 : %s\n", kya.name);
+	printf("나이 : %d\n", kya.age);
+	printf("성별 : %s\n", kya.gender);
+
+	printf("\n");
+	
+	struct Human human[3] = { { "오경근", 19, "남자" },{ "박경아", 21, "여자" } ,{ "훈지근", 19, "여자" } };
+	
+
+	for (int i = 0; i < 3; i++)
+	{
+		printf("이름 : %s | 나이 : %d | 성별 : %s\n", human[i].name, human[i].age, human[i].gender);
+	}
+
+	printf("\n");
+
+	struct Human* hPtr;
+	hPtr = &kya;
+	printf("이름 : %s | 나이 : %d | 성별 : %s\n", hPtr->name, hPtr->age, hPtr->gender);
+
+	return 0;
+}
