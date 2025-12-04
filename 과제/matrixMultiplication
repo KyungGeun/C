@@ -1,0 +1,142 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void GetMatrix(int** mat, int numRow, int numCol);
+void matMul(int** mat1, int** mat2, int** matPtr, int numRow1, int numCol2, int numRow2);
+
+int main(void)
+{
+	int** matPtr;
+	int numRow1, numCol1, numRow2, numCol2;
+	
+	printf("Type the dimension of the first matrix: ");
+	scanf("%d %d", &numRow1, &numCol1);
+
+	int** mat1, ** mat2;
+
+	mat1 = (int**)malloc(numRow1 * sizeof(int*));
+	for (int i = 0; i < numRow1; i++)
+	{
+		mat1[i] = (int*)malloc(numCol1 * sizeof(int));
+	}
+
+	GetMatrix(mat1, numRow1, numCol1);
+	printf("\n");
+
+	while (1)
+	{
+		printf("Type the dimension of the second matrix: ");
+		scanf("%d %d", &numRow2, &numCol2);
+
+		if (numCol1 != numRow2) printf("Row number does not match!\n");
+		else
+		{
+			printf("\n");
+			break;
+		}
+	}
+
+	mat2 = (int**)malloc(numRow2 * sizeof(int*));
+	for (int i = 0; i < numRow2; i++)
+	{
+		mat2[i] = (int*)malloc(numCol2 * sizeof(int));
+	}
+
+	GetMatrix(mat2, numRow2, numCol2);
+
+	matPtr = (int**)malloc(numRow1 * sizeof(int*));
+	for (int i = 0; i < numRow1; i++)
+	{
+		matPtr[i] = (int*)malloc(numCol2 * sizeof(int));
+	}
+
+	matMul(mat1, mat2, matPtr, numRow1, numCol2, numRow2);
+
+	printf("\nThe result is\n\n");
+	for (int i = 0; i < numRow1; i++) 
+	{
+		for (int j = 0; j < numCol2; j++) 
+		{
+			printf("%d ", matPtr[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (int i = 0; i < numRow1; i++)
+	{
+		free(matPtr[i]);
+	}
+	free(matPtr);
+
+	for (int i = 0; i < numRow2; i++)
+	{
+		free(mat2[i]);
+	}
+	free(mat2);
+
+	for (int i = 0; i < numRow1; i++)
+	{
+		free(mat1[i]);
+	}
+	free(mat1);
+	return 0;
+}
+
+void GetMatrix(int** mat, int numRow, int numCol)
+{
+	for (int i = 0; i < numRow; i++)
+	{
+		if (i == 0)
+		{
+			printf("Type the 1st row: ");
+		}
+
+		else if (i == 1)
+		{
+			printf("Type the 2nd row: ");
+		}
+
+		else if (i == 2)
+		{
+			printf("Type the 3rd row: ");
+		}
+
+		else
+		{
+			printf("Type the %dth row: ", i + 1);
+		}
+
+		char input[20];
+		int len, col = 0;
+
+		scanf("%s", input);
+		len = strlen(input);
+
+		for (int j = 0; j < len; j++)
+		{
+			if (j % 2 == 0)
+			{
+				mat[i][col] = (int)input[j] - 48;
+				col++;
+			}
+		}
+	}
+}
+
+void matMul(int** mat1, int** mat2, int** matPtr, int numRow1, int numCol2, int numRow2)
+{
+	for (int i = 0; i < numRow1; i++)
+	{
+		for (int j = 0; j < numCol2; j++)
+		{
+			matPtr[i][j] = 0;
+
+			for (int k = 0; k < numRow2; k++)
+			{
+				matPtr[i][j] += mat1[i][k] * mat2[k][j];
+			}
+		}
+	}
+}
